@@ -1,0 +1,91 @@
+
+#include <iostream>
+using namespace std;
+
+#define MAX 5
+
+int queue[MAX];
+int front = -1;
+int rear = -1;
+
+// Function to display queue elements
+void display()
+{
+    if (front == -1)
+    {
+        cout << "Queue is empty" << endl;
+        return;
+    }
+
+    for (int i = front; i <= rear; i++)
+    {
+        cout << queue[i] << "\t";
+    }
+
+    cout << endl << endl;
+}
+
+// Function to add elements
+void enqueue(int x)
+{
+    if (rear == MAX - 1)
+    {
+        cout << "Queue is full" << endl;
+    }
+    else
+    {
+        if (front == -1)
+        {
+            front = 0;
+        }
+
+        rear++;
+        queue[rear] = x;
+
+        cout << x << " added to queue" << endl;
+        display();
+    }
+}
+
+// Function to remove elements
+void dequeue()
+{
+    if (front == -1)
+    {
+        cout << "Queue is empty" << endl;
+    }
+    else
+    {
+        cout << queue[front] << " removed from queue" << endl;
+
+        if (front == rear)
+        {
+            front = -1;
+            rear = -1;
+        }
+        else
+        {
+            front++;
+        }
+
+        display();
+    }
+}
+
+int main()
+{
+    enqueue(10);
+    enqueue(15);
+    enqueue(25);
+    enqueue(35);
+    enqueue(45);
+    enqueue(55);
+
+    cout << "\nRemoving elements from queue" << endl;
+
+    dequeue();
+    dequeue();
+    dequeue();
+
+    return 0;
+}
